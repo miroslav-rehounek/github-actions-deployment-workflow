@@ -7,7 +7,7 @@ jobs:
         steps:
           - name: Build static files
             id: build
-            run: echo index.html needs no building
+            run: mkdir build_outputs_folder/; cp index.html build_outputs_folder/index.html
     
           - name: Upload static files as artifact
             id: deployment
@@ -20,12 +20,12 @@ jobs:
       permissions:
         pages: write      # to deploy to Pages
         id-token: write   # to verify the deployment originates from an appropriate source
-
+        
       # Deploy to the github-pages environment
       environment:
         name: github-pages
         url: ${{ steps.deployment.outputs.page_url }}
-
+        
       # Specify runner + deployment step
       runs-on: ubuntu-latest
       steps:
